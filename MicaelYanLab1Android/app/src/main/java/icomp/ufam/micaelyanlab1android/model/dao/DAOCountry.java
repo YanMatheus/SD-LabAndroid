@@ -1,11 +1,9 @@
-package icomp.ufam.micaelyanlab1android;
+package icomp.ufam.micaelyanlab1android.model.dao;
 
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.activeandroid.query.Select;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,7 +25,7 @@ public class DAOCountry extends Model {
         super();
     }
 
-    public static List<Country> getCountries() {
+    public static List<DAOCountry> getCountries() {
         return new Select().from(DAOCountry.class).execute();
     }
 

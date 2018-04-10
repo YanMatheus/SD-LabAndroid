@@ -38,7 +38,7 @@
             android:value="icomp.ufam.micaelyanlab1android.dao.DAOCountry" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".view.MapsActivity"
             android:label="@string/title_activity_maps">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

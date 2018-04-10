@@ -1,4 +1,4 @@
-package icomp.ufam.micaelyanlab1android;
+package icomp.ufam.micaelyanlab1android.view;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import icomp.ufam.micaelyanlab1android.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -30,4 +32,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
     }
+
+
 }

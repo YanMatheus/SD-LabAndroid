@@ -1,4 +1,4 @@
-package icomp.ufam.micaelyanlab1android;
+package icomp.ufam.micaelyanlab1android.model.bean;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
+<RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MapsActivity" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        tools:context=".view.MapsActivity"
+        android:layout_above="@+id/voltarButton"/>
+
+    <Button
+        android:id="@+id/voltarButton"
+        android:layout_width="191dp"
+        android:layout_height="77dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+
+
+        android:text="Voltar"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/outropaisButton"
+        android:layout_width="175dp"
+        android:layout_height="77dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:text="Mudar País"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

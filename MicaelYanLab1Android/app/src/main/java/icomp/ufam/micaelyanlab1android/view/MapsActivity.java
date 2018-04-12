@@ -55,10 +55,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         ActionBar actionBar = getActionBar();
-        voltar= findViewById(R.id.voltarButton);
-        mudarpais=findViewById(R.id.outropaisButton);
-
-
+        voltar = findViewById(R.id.voltarButton);
+        mudarpais = findViewById(R.id.outropaisButton);
 
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override

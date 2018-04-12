@@ -28,15 +28,16 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
         <meta-data
             android:name="AA_DB_NAME"
             android:value="restcountries_micael_yan.db" />
         <meta-data
             android:name="AA_DB_VERSION"
-            android:value="1" />
+            android:value="2" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="icomp.ufam.micaelyanlab1android.dao.DAOCountry" />
+            android:value="icomp.ufam.micaelyanlab1android.model.dao.DAOCountry" />
 
         <activity
             android:name=".view.MainActivity"

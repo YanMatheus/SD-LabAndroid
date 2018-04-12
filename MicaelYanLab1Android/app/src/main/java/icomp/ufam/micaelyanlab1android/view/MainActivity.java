@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        webView.loadUrl("https://github.com/YanMatheus/Tetris-Souls");
+        webView.loadUrl("https://github.com/micalevisk/SD-LabAndroid");
     }
 
 }

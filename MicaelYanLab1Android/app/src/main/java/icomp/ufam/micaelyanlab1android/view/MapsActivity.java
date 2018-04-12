@@ -59,29 +59,28 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mudarpais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getData(v);
+                // get random DB instance
             }
         });
     }
 
-    public void getData(View view){
-        APICountries.getRestCountriesClient().getCountries().enqueue(new Callback<List<Country>>() {
-            @Override
-            public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
-              if(response.isSuccessful()){  List<Country> countryList = response.body();
-                countryList.clear();
-                for (Country country : countryList){
-                    countryList.add(country);
-                }
+    public void getData(View view) {
+        APICountries
+            .getRestCountriesClient()
+            .getCountries().enqueue(new Callback<List<Country>>() {
+                    @Override
+                    public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                      if ( response.isSuccessful() ) {
+                        List<Country> countryList = response.body();
+                        for (Country country : countryList) System.out.println(country);
+                        } else System.err.println( response.errorBody() );
+                    }
 
-                }else{ System.out.println(response.errorBody());}
-            }
-
-            @Override
-            public void onFailure(Call<List<Country>> call, Throwable t) {
-                    t.printStackTrace();
-            }
-        });
+                    @Override
+                    public void onFailure(Call<List<Country>> call, Throwable t) {
+                            t.printStackTrace();
+                    }
+            });
 
     }
 

@@ -39,8 +39,8 @@
             android:value="icomp.ufam.micaelyanlab1android.dao.DAOCountry" />
 
         <activity
-            android:name=".view.MapsActivity"
-            android:label="@string/title_activity_maps">
+            android:name=".view.MainActivity"
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -48,8 +48,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+            android:name=".view.MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
     </application>
 
 </manifest>

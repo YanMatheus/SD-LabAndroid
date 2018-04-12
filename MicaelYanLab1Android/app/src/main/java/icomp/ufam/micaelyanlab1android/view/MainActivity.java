@@ -6,14 +6,14 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import icomp.ufam.micaelyanlab1android.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-
+    private WebView webView;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getBaseContext(), MapsActivity.class);
                     startActivity(intent);
                     return true;
-                case R.id.navigation_notifications:
-                    return true;
             }
             return false;
         }
@@ -38,9 +36,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        webView = findViewById(R.id.webviewgit);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        webView.loadUrl("https://github.com/YanMatheus/Tetris-Souls");
     }
 
 }

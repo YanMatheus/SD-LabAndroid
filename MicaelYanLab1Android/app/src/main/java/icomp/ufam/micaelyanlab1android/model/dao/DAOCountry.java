@@ -14,14 +14,14 @@ import icomp.ufam.micaelyanlab1android.model.bean.Country;
 @Table(name = "Countries")
 public class DAOCountry extends Model {
 
-    @Column(name = "Name")
+    @Column(name = "Name", unique = true)
     private String name;
 
     @Column(name = "Latitude")
-    private double latitude;
+    private Double latitude;
 
     @Column(name = "Longitude")
-    private double longitude;
+    private Double longitude;
 
 
     public String getName() {
@@ -40,18 +40,18 @@ public class DAOCountry extends Model {
         super();
     }
 
-    public  DAOCountry(Country country) {
+    public DAOCountry(Country country) {
         super();
         this.name = country.getName();
         this.latitude = country.getLatlng().get(0);
         this.longitude = country.getLatlng().get(1);
     }
 
+
     public static List<DAOCountry> getCountries() {
         return new Select().from(DAOCountry.class).execute();
     }
 
-    // Will be used by the ArrayAdapter in the ListView
     @Override
     public String toString() {
         return name;

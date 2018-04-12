@@ -88,6 +88,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+
+        LatLng ufam = new LatLng(-3.0890975,-59.9657044);
+        mMap.addMarker(new MarkerOptions().position(ufam).title("IComp UFã"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(ufam));
+        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
     }
 
 

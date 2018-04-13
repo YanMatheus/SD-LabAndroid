@@ -72,9 +72,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 if (countryList != null) {
-                    System.out.println("asdasdasd");
                     Random random = new Random();
-                    int randomInt = random.nextInt(countryList.size() - 1);
+                    int randomInt = random.nextInt( countryList.size() );
 
                     Country randomCountry = countryList.get(randomInt);
                     LatLng countryLatlng = new LatLng(

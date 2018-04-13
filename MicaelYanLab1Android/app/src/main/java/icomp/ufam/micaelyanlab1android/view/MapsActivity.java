@@ -41,6 +41,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        /*
         try {
             if ( DAOCountry.getCountries().isEmpty() ) {
                 getData();
@@ -48,6 +49,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } catch (NullPointerException ex) {
             System.err.println("erro ao recuperar countries do BD");
         }
+        */
+        getData();
     }
 
 

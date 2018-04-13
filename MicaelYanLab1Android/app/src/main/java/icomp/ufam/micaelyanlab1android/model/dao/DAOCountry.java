@@ -36,6 +36,18 @@ public class DAOCountry extends Model {
         return longitude;
     }
 
+    public void setName(String name) {
+    	this.name = name;
+    }
+
+    public void setLatitude(Double latitude) {
+    	this.latitude = latitude;
+	}
+
+	public void setLongitude(Double longitude) {
+    	this.longitude = longitude;
+	}
+
     public DAOCountry() {
         super();
     }

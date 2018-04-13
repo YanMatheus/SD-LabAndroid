@@ -103,7 +103,8 @@ obj/
 .idea/libraries/
 .idea/.name
 .idea/compiler.xml
-.idea/copyright/profiles_settings.xml
+.idea/copyright/
+\.idea/copyright/
 .idea/encodings.xml
 .idea/misc.xml
 .idea/modules.xml

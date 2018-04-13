@@ -104,6 +104,7 @@ obj/
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/
+\.idea/copyright/
 .idea/encodings.xml
 .idea/misc.xml
 .idea/modules.xml

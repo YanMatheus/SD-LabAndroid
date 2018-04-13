@@ -97,32 +97,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void getData() {
         APICountries
             .getRestCountriesClient()
-            .getCountries().enqueue(new Callback<List<Country>>() {
-                    @Override
-                    public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+            .getCountries()
+            .enqueue(new Callback<List<Country>>() {
+                @Override
+                public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
+                    if ( response.isSuccessful() ) {
+                        countryList = response.body();
 
-                        if ( response.isSuccessful() ) {
-                            countryList = response.body();
+                        ActiveAndroid.beginTransaction();
+                        try {
+                            for (Country country : countryList) {
+                            DAOCountry daoCountry = new DAOCountry(country);
+                            daoCountry.save();
+                        }
+                            ActiveAndroid.setTransactionSuccessful();
+                        } finally {
+                            ActiveAndroid.endTransaction(); // commit
+                        }
 
-                            ActiveAndroid.beginTransaction();
-                            try {
-                                for (Country country : countryList) {
-                                DAOCountry daoCountry = new DAOCountry(country);
-                                daoCountry.save();
-                            }
-                                ActiveAndroid.setTransactionSuccessful();
-                            } finally {
-                                ActiveAndroid.endTransaction(); // commit
-                            }
+                    } else System.err.println( response.errorBody() );
+                }
 
-                        } else System.err.println( response.errorBody() );
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Country>> call, Throwable t) {
-                            t.printStackTrace();
-                    }
-            });
+                @Override
+                public void onFailure(Call<List<Country>> call, Throwable t) {
+                        t.printStackTrace();
+                }
+        });
 
     }
 

@@ -3,6 +3,7 @@ package icomp.ufam.micaelyanlab1android.view;
 import android.app.ActionBar;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -30,27 +31,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap ;
     private Button voltar, mudarpais;
-    private List<Country> countryList = null;
+    private List<DAOCountry> countryDAOList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        /*
         try {
-            if ( DAOCountry.getCountries().isEmpty() ) {
-                getData();
+            countryDAOList = DAOCountry.getCountries();
+            if ( countryDAOList.isEmpty() ) {
+                fetchData();
+                countryDAOList = DAOCountry.getCountries();
             }
         } catch (NullPointerException ex) {
             System.err.println("erro ao recuperar countries do BD");
         }
-        */
-        getData();
     }
 
 
@@ -71,20 +70,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mudarpais.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (countryList != null) {
+                if (countryDAOList != null) {
                     Random random = new Random();
-                    int randomInt = random.nextInt( countryList.size() );
+                    int randomInt = random.nextInt(countryDAOList.size());
 
-                    Country randomCountry = countryList.get(randomInt);
+                    DAOCountry randomCountry = countryDAOList.get(randomInt);
                     LatLng countryLatlng = new LatLng(
-                            randomCountry.getLatlng().get(0),
-                            randomCountry.getLatlng().get(1)
+                            randomCountry.getLatitude(),
+                            randomCountry.getLongitude()
                     );
 
+                    mMap.clear();
                     Marker randomCountryMarker = mMap.addMarker(new MarkerOptions()
                             .position(countryLatlng)
-                            .title(randomCountry.getName())
-                            .snippet("population: " + randomCountry.getPopulation()));
+                            .title(randomCountry.getName()));
+                            // .snippet("population: " + randomCountry.getPopulation()));
 
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(countryLatlng, 20));
                 }
@@ -94,7 +94,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-    public void getData() {
+    public void fetchData() {
         APICountries
             .getRestCountriesClient()
             .getCountries()
@@ -102,14 +102,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 @Override
                 public void onResponse(Call<List<Country>> call, Response<List<Country>> response) {
                     if ( response.isSuccessful() ) {
-                        countryList = response.body();
+                        List<Country> countryList = response.body();
 
-                        ActiveAndroid.beginTransaction();
+                        ActiveAndroid.beginTransaction(); // para inserir todos os countries ou nenhum
                         try {
                             for (Country country : countryList) {
-                            DAOCountry daoCountry = new DAOCountry(country);
-                            daoCountry.save();
-                        }
+                                if (country.getLatlng().size() > 0) {
+                                    DAOCountry daoCountry = new DAOCountry(country);
+                                    daoCountry.save();
+                                }
+                            }
                             ActiveAndroid.setTransactionSuccessful();
                         } finally {
                             ActiveAndroid.endTransaction(); // commit
